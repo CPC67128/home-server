@@ -19,6 +19,8 @@ $ sudo docker ps
 
 https://nginxproxymanager.com/setup/
 
+In Portainer, pull image jc21/nginx-proxy-manager:latest
+
 ```
 $ nano docker-compose.yml
 
@@ -48,6 +50,6 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
 
-$ docker compose up -d
+$ sudo docker compose up -d
 ```
 
