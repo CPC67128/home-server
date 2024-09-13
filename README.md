@@ -19,8 +19,6 @@ $ sudo docker ps
 
 https://nginxproxymanager.com/setup/
 
-In Portainer, pull image jc21/nginx-proxy-manager:latest
-
 ```
 $ nano docker-compose.yml
 
