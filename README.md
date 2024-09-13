@@ -51,3 +51,8 @@ services:
 $ sudo docker compose up -d
 ```
 
+Connect to Nginx Proxy Manager (port 81)
+
+Change default administrator user
+- Email:    admin@example.com
+- Password: changeme
