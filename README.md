@@ -56,3 +56,6 @@ Connect to Nginx Proxy Manager (port 81)
 Change default administrator user
 - Email:    admin@example.com
 - Password: changeme
+
+
+Create account on LetsEncrypt
