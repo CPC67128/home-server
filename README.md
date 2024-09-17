@@ -57,5 +57,10 @@ Change default administrator user
 - Email:    admin@example.com
 - Password: changeme
 
+## Let's Encrypt
 
-Create account on LetsEncrypt
+https://letsencrypt.org/fr/
+
+?
+
+Will go through Nginx Proxy Manager
