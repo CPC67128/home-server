@@ -1,25 +1,26 @@
-name: nginx
+name: nginx-proxy-manager
 
 services:
   web:
-    image: nginx:latest
+    image: jc21/nginx-proxy-manager:latest
     ports:
       - 80:80
+      - 443:443
+      - 81:81
     volumes:
-      - /root/www:/usr/share/nginx/html
+      - /root/letsencrypt:/etc/letsencrypt
+      - /root/data:/data
     restart: always
-  ftp:
-    image: bogem/ftp
-    ports:
-      - 20:20
-      - 21:21
-      - 47400-47470:47400-47470
-    volumes:
-      - /root/www:/home/vsftpd
-    environment:
-      FTP_USER: ${FTP_USER}
-      FTP_PASS: ${FTP_PASS}
-      PASV_ADDRESS: ${PASV_ADDRESS}
-    restart: always
-
-# docker compose up -d
+#  ftp:
+#    image: bogem/ftp
+#    ports:
+#      - 20:20
+#      - 21:21
+#      - 47400-47470:47400-47470
+#    volumes:
+#      - /root/ftp:/home/vsftpd
+#    environment:
+#      FTP_USER: ${FTP_USER}
+#      FTP_PASS: ${FTP_PASS}
+#      PASV_ADDRESS: ${PASV_ADDRESS}
+#    restart: always
