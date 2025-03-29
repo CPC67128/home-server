@@ -1,12 +1,12 @@
-name: apache-php
+name: nginx
 
 services:
   web:
-    image: php:8.4.5-apache
+    image: nginx:latest
     ports:
       - 80:80
     volumes:
-      - /root/www:/var/www/html
+      - /root/www:/usr/share/nginx/html
     restart: always
   ftp:
     image: bogem/ftp
