@@ -1,0 +1,23 @@
+name: apache-php
+
+services:
+  web:
+    name: web
+    image: php:8.4.5-apache
+    ports:
+      - 80:80
+    restart: always
+  ftp:
+    name: ftp
+    image: bogem/ftp
+    ports:
+      - 20:20
+      - 21:21
+      - 47400-47470:47400-47470
+    volumes:
+      - <host folder>:/home/vsftpd
+    restart: always
+    environment:
+      FTP_USER: ddd
+      FTP_PASS: 
+#      PASV_ADDRESS=<ip of server>
