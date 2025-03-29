@@ -1,16 +1,6 @@
-name: nginx-proxy-manager
+name: dolibarr
 
 services:
-  web:
-    image: jc21/nginx-proxy-manager:latest
-    ports:
-      - 80:80
-      - 443:443
-      - 81:81
-    volumes:
-      - /root/letsencrypt:/etc/letsencrypt
-      - /root/data:/data
-    restart: always
 #  ftp:
 #    image: bogem/ftp
 #    ports:
@@ -24,3 +14,39 @@ services:
 #      FTP_PASS: ${FTP_PASS}
 #      PASV_ADDRESS: ${PASV_ADDRESS}
 #    restart: always
+    mariadb:
+        image: mariadb:latest
+        container_name: dolibarr_mariadb
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - /root/dolibarr_mariadb:/var/lib/mysql
+    web:
+        # Choose the version of image to install
+        # dolibarr/dolibarr:latest (the latest stable version)
+        # dolibarr/dolibarr:develop
+        # dolibarr/dolibarr:x.y.z
+        image: dolibarr/dolibarr:latest
+        container_name: dolibarr_web
+        environment:
+            DOLI_DB_HOST: dolibarr_mariadb
+            DOLI_DB_NAME: ${MYSQL_DATABASE}
+            DOLI_DB_USER: ${MYSQL_USER}
+            DOLI_DB_PASSWORD: ${MYSQL_PASSWORD}
+            DOLI_ADMIN_LOGIN: ${DOLI_ADMIN_LOGIN}
+            DOLI_ADMIN_PASSWORD: ${DOLI_ADMIN_PASSWORD}
+            DOLI_CRON: ${DOLI_CRON}
+            DOLI_CRON_KEY: ${DOLI_CRON_KEY}
+            DOLI_INIT_DEMO: ${DOLI_INIT_DEMO}
+            DOLI_COMPANY_NAME: ${DOLI_COMPANY_NAME}
+        ports:
+            - '80:80'
+        links:
+            - mariadb
+        volumes:
+            - /root/dolibarr_documents:/var/www/documents
+            - /root/dolibarr_custom:/var/www/html/custom
+
