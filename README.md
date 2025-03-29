@@ -70,5 +70,7 @@ Will go through Nginx Proxy Manager
 
 Template Ubuntu 24.04 LTS
 
+apt update / full-upgrade
+
 Install docker: https://docs.docker.com/engine/install/ubuntu/
 
