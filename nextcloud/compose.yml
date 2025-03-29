@@ -31,3 +31,4 @@ services:
       - db
     volumes:
       - /root/nextcloud:/var/www/html
+    restart: always
