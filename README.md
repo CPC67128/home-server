@@ -64,3 +64,11 @@ https://letsencrypt.org/fr/
 ?
 
 Will go through Nginx Proxy Manager
+
+
+## Proxmox / LXC CT - Apache
+
+Template Ubuntu 24.04 LTS
+
+Install docker: https://docs.docker.com/engine/install/ubuntu/
+
