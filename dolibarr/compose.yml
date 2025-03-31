@@ -24,6 +24,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         volumes:
             - /root/dolibarr_mariadb:/var/lib/mysql
+        restart: always
     web:
         # Choose the version of image to install
         # dolibarr/dolibarr:latest (the latest stable version)
@@ -49,4 +50,4 @@ services:
         volumes:
             - /root/dolibarr_documents:/var/www/documents
             - /root/dolibarr_custom:/var/www/html/custom
-
+        restart: always
