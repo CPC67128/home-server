@@ -1,10 +1,16 @@
 FROM php:8.4.5-apache
 
-# Install mysqli extension
-RUN docker-php-ext-install mysqli
+RUN a2enmod rewrite \
+ && apt update \
+ && apt install -y \
+ && docker-php-ext-install mysqli pdo pdo_mysql
 
-# Optional: Enable Apache mod_rewrite if needed
-# RUN a2enmod rewrite
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
-# Copy your application files
-# COPY . /var/www/html/
+RUN docker-php-ext-install mysqli pdo_mysql
+
